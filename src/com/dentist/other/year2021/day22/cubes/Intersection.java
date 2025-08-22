@@ -16,4 +16,12 @@ public enum Intersection {
 
     final boolean openNegative;
 
+    public boolean closedNegative() {
+        return !openNegative;
+    }
+
+    public boolean closedPositive() {
+        return !openPositive;
+    }
+
 }
