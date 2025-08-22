@@ -9,10 +9,10 @@ public class Core {
     private final Map<Address, Boolean> onsies = new HashMap<>();
 
     public void applyInstruction(Instruction i) {
-        for (int x = i.xa(); x <= i.xb(); x++) {
-            for (int y = i.ya(); y <= i.yb(); y++) {
-                for (int z = i.za(); z <= i.zb(); z++) {
-                    onsies.put(new Address(x, y, z), i.on());
+        for (int x = i.xa; x <= i.xb; x++) {
+            for (int y = i.ya; y <= i.yb; y++) {
+                for (int z = i.za; z <= i.zb; z++) {
+                    onsies.put(new Address(x, y, z), i.on);
                 }
             }
         }

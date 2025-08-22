@@ -1,9 +1,24 @@
 package com.dentist.other.year2021.day22;
 
-public record Instruction(boolean on,
-                          int xa, int xb, int ya, int yb, int za, int zb) {
+public class Instruction {
 
     public static final Instruction INVALID_INSTRUCTION = new Instruction(false, 0, -1, 0, -1, 0, -1); // will get skipped.
+
+    public final int xa, xb, ya, yb, za, zb;
+    public final boolean on;
+
+    public Instruction(boolean on,
+                       int xa, int xb, int ya, int yb, int za, int zb) {
+        this.on = on;
+        this.xa = xa;
+        this.xb = xb + 1;
+        this.ya = ya;
+        this.yb = yb + 1;
+        this.za = za;
+        this.zb = zb + 1;
+
+    }
+
 
     //on x=-20..26,y=-36..17,z=-47..7
     public static Instruction fromString(String s) {
@@ -17,34 +32,6 @@ public record Instruction(boolean on,
         int zb = Integer.parseInt(s.split("\\.\\.")[3]);
 
         boolean on = s.startsWith("on");
-
-//        if ((xa > 50 || ya > 50 || za > 50) || (xb < - 50 || yb < - 50 || zb < -50)) {
-//            return INVALID_INSTRUCTION;
-//        }
-//
-//        if (xa < -50) {
-//            xa = -50;
-//        }
-//
-//        if (xb > 50) {
-//            xb = 50;
-//        }
-//
-//        if (ya < -50) {
-//            ya = -50;
-//        }
-//
-//        if (yb > 50) {
-//            yb = 50;
-//        }
-//
-//        if (za < -50) {
-//            za = -50;
-//        }
-//
-//        if (zb > 50) {
-//            zb = 50;
-//        }
 
         return new Instruction(on, xa, xb, ya, yb, za, zb);
     }

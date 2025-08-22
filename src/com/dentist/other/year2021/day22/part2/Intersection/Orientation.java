@@ -1,6 +1,6 @@
-package com.dentist.other.year2021.day22.cubes;
+package com.dentist.other.year2021.day22.part2.Intersection;
 
-public enum Intersection {
+public enum Orientation {
 
     NONE(false,false),
     ECLIPSE(true,true),
@@ -8,7 +8,7 @@ public enum Intersection {
     OPEN_POSITIVE(false,true),
     OPEN_NEGATIVE(true,false);
 
-    private Intersection(boolean openNegative, boolean openPositive) {
+    private Orientation(boolean openNegative, boolean openPositive) {
         this.openNegative = openNegative;
         this.openPositive = openPositive;
     }

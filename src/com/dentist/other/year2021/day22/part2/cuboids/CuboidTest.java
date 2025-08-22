@@ -1,4 +1,4 @@
-package com.dentist.other.year2021.day22.cubes;
+package com.dentist.other.year2021.day22.part2.cuboids;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
