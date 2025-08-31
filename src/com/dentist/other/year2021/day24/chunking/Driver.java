@@ -48,7 +48,7 @@ public class Driver {
         // We know that if we can produce z = the value in the hackyZPossibilitiesMap, that we're okay.
         // So, what values of Z and what input will give us what we need?
 
-        ExecutorService executor = Executors.newFixedThreadPool(9);
+        ExecutorService executor = Executors.newFixedThreadPool(36);
 
         for (int chunk = 14; chunk > 0; chunk--) {
             TreeSet<Integer> validZTargets = hackyZPossibilitiesMap.get(chunk).stream().map(tuple -> tuple.previousZ).collect(Collectors.toCollection(TreeSet::new));
@@ -60,7 +60,9 @@ public class Driver {
                 // with parallelizing on the W's, (nine threads runnning per chunk) we end up at 45 seconds.
                 // But what if we further parallelize by chunk? There are about 10million values in the biggest chunk.
                 // Split it to one mil a piece.
-                for (Range miniRange : chunkRange.splitTo(1_000_000)) {
+
+                // Ends up that further splitting the ranges doesn't give us any real savings.
+                for (Range miniRange : chunkRange.splitTo(100_000_000)) {
                     RunOneW parallelRun = new RunOneW(miniRange, wInput, inputs, chunk, hackyZPossibilitiesMap, validZTargets);
                     CompletableFuture<Void> f = CompletableFuture.runAsync(parallelRun, executor);
                     futureWs.add(f);
@@ -298,7 +300,7 @@ public class Driver {
 record Range(int start, int end) {
 
     public Range[] splitTo(int size) {
-        int numberOfParts = ((end-start / size) + 1);
+        int numberOfParts = ((end-start) / size + 1);
         Range[] parts = new Range[numberOfParts];
 
         for (int i = 0; i < numberOfParts; i++) {
