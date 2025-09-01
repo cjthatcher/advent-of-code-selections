@@ -1,4 +1,5 @@
 import java.io.File
+import HeightMap.Coordinates as Coordinates
 
 val basinMap = mutableMapOf<Coordinates, Coordinates>()
 
@@ -66,13 +67,12 @@ class HeightMap(val heights: List<List<Int>>) {
     private fun isOutOfBounds(coordinates: Coordinates) =
         coordinates.row < 0 || coordinates.row >= rowCount || coordinates.column < 0 || coordinates.column >= columnCount
 
-}
-
-data class Coordinates(val row: Int, val column: Int) {
-    fun rightOf(): Coordinates = Coordinates(row, column + 1)
-    fun leftOf(): Coordinates = Coordinates(row, column - 1)
-    fun upOf(): Coordinates = Coordinates(row - 1, column)
-    fun downOf(): Coordinates = Coordinates(row + 1, column)
+    data class Coordinates(val row: Int, val column: Int) {
+        fun rightOf(): Coordinates = Coordinates(row, column + 1)
+        fun leftOf(): Coordinates = Coordinates(row, column - 1)
+        fun upOf(): Coordinates = Coordinates(row - 1, column)
+        fun downOf(): Coordinates = Coordinates(row + 1, column)
+    }
 }
 
 data class Cell(val coordinates: Coordinates, val height: Int)
