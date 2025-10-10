@@ -1,6 +1,5 @@
 package com.dentist.other.year2021.day23;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public record Coordinate(int row, int column) {
@@ -53,3 +52,4 @@ public record Coordinate(int row, int column) {
 
     public static final Set<Coordinate> directions = Set.of(UP, DOWN, LEFT, RIGHT, UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT);
 }
+
