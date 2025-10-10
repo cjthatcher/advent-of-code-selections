@@ -40,6 +40,27 @@ public record Coordinate(int row, int column) {
         return new Coordinate(row + other.row, column + other.column);
     }
 
+    public Coordinate simplifyVector() {
+        // We're going to find the greatest common divisor of row and column, and scale the vector by that amount.
+        int r = Math.abs(row);
+        int c = Math.abs(column);
+        int max = Math.max(r, c);
+        for (int divisor = max; divisor > 0; divisor--) {
+            if (r % divisor == 0 && c % divisor == 0) {
+                return new Coordinate(row / divisor, column / divisor);
+            }
+        }
+        return this;
+    }
+
+    public Coordinate reverseVector() {
+        return new Coordinate(row * -1, column * -1);
+    }
+
+    // From Coordinate A to Coordinate B, there exists a vector d. a.delta(b) returns d.  So A + d = B.
+    public Coordinate delta(Coordinate other) {
+        return new Coordinate(other.row - row, other.column - column);
+    }
     public static final Coordinate UP = new Coordinate(-1, 0);
     public static final Coordinate DOWN = new Coordinate(1, 0);
     public static final Coordinate LEFT = new Coordinate(0, -1);
