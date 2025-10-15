@@ -1,5 +1,7 @@
 package com.dentist.other.year2021.day25;
 
+import com.dentist.other.year2021.day23.Coordinate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

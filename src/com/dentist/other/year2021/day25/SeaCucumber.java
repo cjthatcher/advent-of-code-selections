@@ -1,5 +1,7 @@
 package com.dentist.other.year2021.day25;
 
+import com.dentist.other.year2021.day23.Coordinate;
+
 public class SeaCucumber {
 
     /** We will do two passes when we evolve. The first pass only does RIGHT. The second pass only does DOWN. */
